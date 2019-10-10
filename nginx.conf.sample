@@ -1,0 +1,64 @@
+# -*- mode:conf -*-
+
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+        root /usr/share/nginx/html;     
+	index index.html index.htm;
+
+	server_name something.somedomain;
+
+        satisfy any;
+        allow 127.0.0.1;
+        deny all;
+
+        auth_basic           "Music Server";
+        auth_basic_user_file htpasswd;
+
+        location / {
+		try_files $uri $uri/ =404;
+	}
+	
+	location /stream/ {
+		proxy_pass http://icecast:8000/mopidy;
+		
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header Host $host;
+	}
+        
+        location /mopidy/ {
+		proxy_pass http://mopidy:6680/mopidy/;
+		
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header Host $host;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+                proxy_connect_timeout 7d;
+                proxy_send_timeout 7d;
+                proxy_read_timeout 7d;
+
+                # looks like mobile safari doesn't support auth for websockets?
+                # https://bugs.webkit.org/show_bug.cgi?id=80362
+                # *sigh*
+                allow all;
+	}
+	
+	location /iris/ {
+    		proxy_pass http://mopidy:6680/iris/;
+		
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header Host $host;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+                proxy_connect_timeout 7d;
+                proxy_send_timeout 7d;
+                proxy_read_timeout 7d;
+	}
+
+        location /bot/ {
+                proxy_pass http://bot:8765/;
+        }
+}
