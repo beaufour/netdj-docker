@@ -1,9 +1,12 @@
 # What is this
 Host setup for Mopidy+Iris, Icecast, and a Mopidy Slack bot.
 
-It consists of four docker containers. One for each of the services above and then nginx in
-front which will expose `/iris/` and `/stream/`.
+It will provide a full solution that allows you to play Spotify music over the web (through Iris),
+and then stream it (to multiple locations) via IceCast. It will also run a Slack bot that will post
+the songs being played in a channel, and allow up to ask for the queue and skip the current number.
 
+It consists of four docker containers. One for each of the services above and then Nginx in
+front which will expose `/iris/` and `/stream/`.
 
 # How to use
 
