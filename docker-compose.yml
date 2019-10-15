@@ -4,7 +4,7 @@ services:
     image: jaedb/iris
     volumes:
       - ../music:/var/lib/mopidy/media:ro
-      - ../playlists:/var/lib/mopidy/playlists
+      - ../playlists:/var/lib/mopidy/playlists:ro
       - ../netdj-configs/mopidy.conf:/config/mopidy.conf:ro
       - ./mopidy-entrypoint.sh:/entrypoint.sh:ro
     depends_on:
@@ -32,6 +32,7 @@ services:
     volumes:
       - ../netdj-configs/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ../netdj-configs/htpasswd:/etc/nginx/htpasswd:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
       - 80:80
     depends_on:
