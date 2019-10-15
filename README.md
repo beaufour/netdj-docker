@@ -39,3 +39,12 @@ credentials (to put in `bot-env`). The "Request URL" is `http://HOST/bot/slack/e
 
 After the setup above, it is just a question of running `docker-compose up` (potentially with `-d`
 to detach).
+
+## Things that aren't ideal
+
+* we want to add a source fallback with a silent mp3 to avoid the stream stopping when skipping tracks,
+  but that means we have to override all of the icecast configuration and thus setting passwords etc does
+  not work anymore (with the stock docker image). We should really create our own docker image...
+
+* certs are hosted on the host and not in a container. When using letsencrypt maybe it should live in the
+  web service itself, or maybe a separate container?

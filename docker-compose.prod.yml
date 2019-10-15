@@ -1,9 +1,4 @@
 services:
-  mopidy:
-    volumes:
-      - /mnt/music:/var/lib/mopidy/media:ro
-      - /mnt/music/playlists:/var/lib/mopidy/playlists
-
   bot:
     environment:
       - NODE_ENV=production
