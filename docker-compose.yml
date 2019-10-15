@@ -19,7 +19,7 @@ services:
     user: node
     working_dir: /home/node/app
     volumes:
-      - ../mopidy-slack-bot-2:/home/node/app:ro
+      - ../mopidy-slack-bot:/home/node/app:ro
     command: "npx nodemon"
     ports:
       - 8765:8765
