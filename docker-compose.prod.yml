@@ -8,5 +8,6 @@ services:
   web:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ../netdj-configs/extra-ssl.conf:/etc/nginx/extra-ssl.conf:ro
     ports:
       - 443:443

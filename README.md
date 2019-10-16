@@ -49,5 +49,3 @@ to detach).
 
 * certs are hosted on the host and not in a container. When using letsencrypt maybe it should live in the
   web service itself, or maybe a separate container?
-
-* nginx prod vs debug handling of certs is ugly

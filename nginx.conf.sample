@@ -61,4 +61,6 @@ server {
         location /bot/ {
                 proxy_pass http://bot:8765/;
         }
+
+        include extra-*.conf;
 }
