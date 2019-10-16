@@ -1,5 +1,12 @@
+version: '3'
 services:
   bot:
     environment:
       - NODE_ENV=production
     command: "npm start"
+
+  web:
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    ports:
+      - 443:443

@@ -33,7 +33,8 @@ until it works :) Once it does you should be able to go to `http://HOST/iris/` a
 stuff, and then you can stream from `http://HOST/stream/`.
 
 The last setup step is to get the bot connected. You need to create a bot on slack, to get the
-credentials (to put in `bot-env`). The "Request URL" is `http://HOST/bot/slack/events`.
+credentials (to put in `bot-env`). The "Request URL" is `http://HOST/bot/slack/events`. You also
+need to specify a channel ID for where the bot posts the songs that are played (in `bot-env` too).
 
 ## Running
 
@@ -48,3 +49,5 @@ to detach).
 
 * certs are hosted on the host and not in a container. When using letsencrypt maybe it should live in the
   web service itself, or maybe a separate container?
+
+* nginx prod vs debug handling of certs is ugly

@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mopidy:
+    volumes:
+      - ../netdj-configs/mopidy.conf.debug:/config/mopidy.conf:ro
+
+  bot:
+    env_file: ../netdj-configs/bot-env.debug
+
+  web:
+    volumes:
+      - ../netdj-configs/nginx.conf.debug:/etc/nginx/conf.d/default.conf:ro
